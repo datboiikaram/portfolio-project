@@ -1,0 +1,332 @@
+:root {
+  --color-very-dark-blue: #0f1424;
+  --color-dark-blue: #1c1f4a;
+  --color-desaturated-blue: #5646e9;
+  --color-pale-blue: #bdc1ff;
+  --color-white: #fff;
+  --default-padding: 2rem;
+  --default-radius: 0.8rem;
+}
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  display: inline-block;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "rubik";
+  color: var(--color-white);
+}
+
+/* End CSS Reset */
+.container {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--color-very-dark-blue);
+  grid-template-columns: repeat(4, 20rem);
+  gap: var(--default-padding);
+  padding-bottom: var(--default-padding);
+}
+@media (min-width: 600px) and (max-width: 900px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+    align-content: start;
+  }
+}
+@media (max-width: 600px) {
+  .container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.name {
+  font-size: 2.6rem;
+  font-weight: 300;
+  margin-top: 0.5rem;
+}
+
+.pic {
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50%;
+  border: 0.2rem solid var(--color-white);
+}
+
+.card {
+  background-color: var(--color-dark-blue);
+  border-radius: var(--default-radius);
+  overflow: hidden;
+}
+.card:not(:nth-child(1)) {
+  padding: var(--default-padding);
+}
+@media (max-width: 900px) {
+  .card:not(:nth-child(1)) {
+    margin: 0 var(--default-padding);
+  }
+}
+.card:nth-child(1) {
+  grid-row: 1/span 2;
+}
+@media (min-width: 600px) and (max-width: 900px) {
+  .card:nth-child(1) {
+    grid-column: 1/span 2;
+    display: flex;
+    flex-direction: row;
+    border-radius: 0;
+  }
+  .card:nth-child(1) .bottom {
+    overflow: hidden;
+    width: 100%;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+  }
+}
+@media (max-width: 600px) {
+  .card:nth-child(1) {
+    border-radius: 0;
+  }
+}
+.card .top {
+  background-color: var(--color-desaturated-blue);
+  padding: var(--default-padding);
+}
+@media (max-width: 900px) {
+  .card .top {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+.bottom {
+  padding-top: 3.5rem;
+  position: relative;
+}
+@media (max-width: 900px) {
+  .bottom {
+    display: flex;
+    margin-bottom: 1rem;
+    flex: 1;
+  }
+}
+
+.row {
+  display: grid;
+  width: 20rem;
+  row-gap: var(--default-padding);
+  justify-content: space-evenly;
+  grid-template-columns: repeat(2, auto);
+  padding: var(--default-padding);
+}
+
+.username {
+  font-weight: 400;
+}
+
+.icon {
+  height: 3rem;
+  width: 3rem;
+  transition: 0.3s;
+}
+
+.icon:hover {
+  scale: 1.3;
+  animation: jiggle 1s ease-out;
+}
+
+.icon .title {
+  font-size: 2.4rem;
+  font-weight: 300;
+}
+
+.type {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: var(--default-padding);
+  font-size: 1.2rem;
+}
+
+.stack-title {
+  font-weight: 300;
+}
+
+.languages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.language {
+  display: inline-block;
+  padding: 0.5rem;
+  background-color: var(--color-desaturated-blue);
+  border-radius: calc(var(--default-radius) / 3);
+}
+
+@keyframes jiggle {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  25% {
+    transform: rotateZ(12deg);
+  }
+  50% {
+    transform: rotateZ(-12deg);
+  }
+  75% {
+    transform: rotateZ(-12deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+.bottom::before {
+  content: "Instgram";
+  top: 2rem;
+  color: var(--color-very-dark-blue);
+  position: absolute;
+  font-weight: 450;
+  background-color: white;
+  padding-left: 0.2rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  animation: badge 0.65s alternate;
+  display: none;
+}
+
+@keyframes badge {
+  from {
+    transform: translateX(-7rem);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.container :has(.instagram:hover) .bottom::before {
+  display: block;
+}
+
+.bottom::after {
+  content: "Twitter";
+  top: 2rem;
+  color: var(--color-very-dark-blue);
+  position: absolute;
+  font-weight: 450;
+  background-color: white;
+  padding-left: 0.2rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  animation: badge-2 0.65s alternate;
+  display: none;
+}
+
+@keyframes badge-2 {
+  from {
+    transform: translateX(-7rem);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.container :has(.twitter:hover) .bottom::after {
+  display: block;
+}
+
+.row {
+  margin-top: 1.3rem;
+  padding: 0;
+  width: 100%;
+}
+
+.row::before {
+  content: "LinkedIn";
+  top: 2rem;
+  color: var(--color-very-dark-blue);
+  position: absolute;
+  font-weight: 450;
+  background-color: white;
+  padding-left: 0.2rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  animation: badge-3 0.65s alternate;
+  display: none;
+}
+
+@keyframes badge-3 {
+  from {
+    transform: translateX(-7rem);
+  }
+  to {
+    transform: translateX(0rem);
+  }
+}
+.container :has(.linkedin:hover) .row::before {
+  display: block;
+}
+
+.row::after {
+  content: "GitHub";
+  top: 2rem;
+  color: var(--color-very-dark-blue);
+  position: absolute;
+  font-weight: 450;
+  background-color: white;
+  padding-left: 0.2rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  animation: badge-3 0.65s alternate;
+  display: none;
+}
+
+@keyframes badge-3 {
+  from {
+    transform: translateX(-7rem);
+  }
+  to {
+    transform: translateX(0rem);
+  }
+}
+.container :has(.github:hover) .row::after {
+  display: block;
+}/*# sourceMappingURL=style.css.map */
